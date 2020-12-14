@@ -1,21 +1,47 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated class="bg-white text-grey-8 q-py-xs" height-hint="58">
       <q-toolbar>
         <q-btn
           flat
           dense
           round
-          icon="menu"
-          aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
+          aria-label="Menu"
+          icon="menu"
         />
 
-        <q-toolbar-title class="absolute-center">
-          TherapyAssistant
-        </q-toolbar-title>
+        <q-btn flat no-caps no-wrap class="q-ml-xs" v-if="$q.screen.gt.xs">
+          <q-toolbar-title shrink class="text-weight-bold">
+            TherapyAssistant
+          </q-toolbar-title>
+        </q-btn>
+
+        <q-space />
 
         
+        <q-space />
+
+        <div class="q-gutter-sm row items-center no-wrap">
+          <q-btn round dense flat color="grey-8" icon="apps" v-if="$q.screen.gt.sm">
+            <q-tooltip>Apps</q-tooltip>
+          </q-btn>
+          <q-btn round dense flat color="grey-8" icon="message" v-if="$q.screen.gt.sm">
+            <q-tooltip>Messages</q-tooltip>
+          </q-btn>
+          <q-btn round dense flat color="grey-8" icon="notifications">
+            <q-badge color="red" text-color="white" floating>
+              2
+            </q-badge>
+            <q-tooltip>Notifications</q-tooltip>
+          </q-btn>
+          <q-btn round flat>
+            <q-avatar size="26px">
+              <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+            </q-avatar>
+            <q-tooltip>Account</q-tooltip>
+          </q-btn>
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -28,7 +54,7 @@
           :icon="nav.icon"
           :label="nav.title"
         >
-        
+
         </q-route-tab>
       </q-tabs>
     </q-footer>
@@ -38,7 +64,8 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      content-class="bg-grey-1"
+      :width="250"
+      content-class="bg-teal-2"
     >
       <q-list>
         <q-item-label
@@ -76,16 +103,28 @@
 
 const navs = [
   {
-    title: 'Todo',
-    caption: 'Todo List',
+    title: 'Patienten',
+    caption: 'Patienten Liste',
     icon: 'school',
     to: '/'
   },
   {
-    title: 'Setttings',
-    caption: 'custom setting',
+    title: 'Stimmingstagebuch',
+    caption: 'Mood Diary',
     icon: 'code',
-    to: '/settings'
+    to: '/mood'
+  },
+  {
+    title: 'Account erstellen',
+    caption: 'Account',
+    icon: 'code',
+    to: '/signup'
+  },
+  {
+    title: 'Mood Liste',
+    caption: 'Account',
+    icon: 'code',
+    to: '/moodlist'
   }
 ];
 
@@ -101,10 +140,16 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   @media screen and (min-width: 768px) {
     .q-footer {
       display: none;
+    }
+  }
+
+  .q-drawer {
+    .q-router-link--active {
+      color: white !important;
     }
   }
 </style>
