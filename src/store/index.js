@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // import example from './module-example'
-import moods from './store-moods'
+import moods from './Moods/store-moods'
 
 Vue.use(Vuex)
 
